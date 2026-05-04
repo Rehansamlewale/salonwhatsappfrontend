@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { ref, get, child, remove, update } from 'firebase/database';
 import { database } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
-import { LOAN_TYPE_NAMES, APPLICATION_STATUSES, LOAN_TYPES, PRIORITY_OPTIONS, ALL_COMBINED_STATUSES, getStatusOptions, getDocumentList } from '../forms/loanTypes';
-import ReminderModal from '../components/ReminderModal';
-import { FaEye, FaEdit, FaTrash, FaBell, FaUsers, FaUserTie, FaWhatsapp } from 'react-icons/fa';
+import { LOAN_TYPE_NAMES, PRIORITY_OPTIONS, ALL_COMBINED_STATUSES, getStatusOptions } from '../forms/loanTypes';
+import { FaEdit, FaTrash, FaUsers, FaWhatsapp } from 'react-icons/fa';
 import WhatsAppMessageModal from '../components/WhatsAppMessageModal';
 import BulkWhatsAppModal from '../components/BulkWhatsAppModal';
 import {
@@ -18,9 +17,7 @@ import {
     TableCell,
     StatusDropdown,
     PriorityDropdown,
-    ActiveDropdown,
     PrimaryButton,
-    SecondaryButton,
     DangerButton,
     Pagination,
     Toast
