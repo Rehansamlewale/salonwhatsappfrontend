@@ -40,7 +40,8 @@ const CustomerList = () => {
     const [selectedCustomerForReminder, setSelectedCustomerForReminder] = useState(null);
     const [isWhatsAppModalOpen, setIsWhatsAppModalOpen] = useState(false);
     const [selectedCustomerForWhatsApp, setSelectedCustomerForWhatsApp] = useState(null);
-    const [deleteSuccess, setDeleteSuccess] = useState(false);
+    const [deleteSuccess] = useState(false);
+    const [, setDeleteSuccess] = useState(false);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [customerToDelete, setCustomerToDelete] = useState(null);
     const [showAssignBankerModal, setShowAssignBankerModal] = useState(false);
@@ -280,7 +281,7 @@ const CustomerList = () => {
         }
 
         setLoading(false);
-    }, []);
+    }, [getAllCustomers]);
 
     useEffect(() => { loadData(); }, [loadData]);
 
@@ -318,7 +319,6 @@ const CustomerList = () => {
     }, [loadData, showContactDropdown]);
 
     const handleCategoryChange = (value) => setSelectedCategory(value);
-    const handleView = (id) => navigate(`/customer/${id}`);
     const handleEdit = (id) => navigate(`/customer/${id}/edit`);
 
     const handleStatusChange = async (customerId, loanId, newStatus, loanType) => {
@@ -372,10 +372,10 @@ const CustomerList = () => {
         }
     };
 
-    const handleReminder = (customer) => {
-        setSelectedCustomerForReminder(customer);
-        setIsReminderModalOpen(true);
-    };
+    // const handleReminder = (customer) => {
+    //     setSelectedCustomerForReminder(customer);
+    //     setIsReminderModalOpen(true);
+    // };
 
     const handleWhatsApp = (customer) => {
         setSelectedCustomerForWhatsApp(customer);
@@ -411,16 +411,16 @@ const CustomerList = () => {
         setCustomerToDelete(null);
     };
 
-    const handleAssignBanker = (customer) => {
-        setSelectedCustomerForBanker(customer);
-        setSelectedBankerId('');
-        setShowAddNewBanker(false);
-        setNewBankerName('');
-        setNewBankerMobile('');
-        setShowAssignBankerModal(true);
-        setShowContactDropdown(false);
-        setContactMatches([]);
-    };
+    // const handleAssignBanker = (customer) => {
+    //     setSelectedCustomerForBanker(customer);
+    //     setSelectedBankerId('');
+    //     setShowAddNewBanker(false);
+    //     setNewBankerName('');
+    //     setNewBankerMobile('');
+    //     setShowAssignBankerModal(true);
+    //     setShowContactDropdown(false);
+    //     setContactMatches([]);
+    // };
 
     const handleContactInputChange = (value) => {
         setNewBankerName(value);
@@ -759,10 +759,6 @@ const CustomerList = () => {
                                 </TableHeader>
                                 <TableBody>
                                     {paginatedCustomers.map((customer, index) => {
-                                        const total = customer.totalDocuments || 0;
-                                        const completed = customer.completedDocuments || 0;
-                                        const docPct = total > 0 ? Math.round((completed / total) * 100) : 0;
-                                        const pct = typeof customer.completionPercentage === 'number' && customer.completionPercentage >= 0 ? customer.completionPercentage : docPct;
                                         const serialNumber = (currentPage - 1) * pageSize + index + 1;
 
                                         return (

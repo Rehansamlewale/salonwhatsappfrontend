@@ -1,4 +1,4 @@
-import { ref, push, set } from "firebase/database";
+import { ref, set } from "firebase/database";
 import { database } from "../firebase";
 
 // Helper function to generate custom IDs with prefix
@@ -15,7 +15,7 @@ const sanitizeFirebaseKeys = (obj) => {
     const sanitized = {};
     Object.keys(obj).forEach(key => {
         // Replace invalid Firebase characters with underscores
-        const sanitizedKey = key.replace(/[.#$\/\[\]]/g, '_');
+        const sanitizedKey = key.replace(/[.#$/[\]]/g, '_');
         sanitized[sanitizedKey] = obj[key];
     });
     return sanitized;

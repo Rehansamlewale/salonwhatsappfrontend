@@ -8,7 +8,6 @@ import { database } from '../firebase';
 
 const EmpDashboard = () => {
     const { currentUser, employeeData } = useAuth();
-    const navigate = useNavigate();
     const [loanStats, setLoanStats] = useState({
         totalLoans: 0,
         totalAmount: 0,
